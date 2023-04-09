@@ -21,7 +21,7 @@
   },
   "homepage": "https://gosen.dev",
   "devDependencies": {
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.4"
   },
   "dependencies": {
     "@gosen/dom": "^0.0.3",

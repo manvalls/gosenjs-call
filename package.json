@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "@gosen/dom": "^0.0.9",
-    "@gosen/request": "^0.0.11"
+    "@gosen/request": "^0.0.12"
   }
 }

@@ -1,8 +1,10 @@
-import request from '@gosen/request'
+import request, { Command } from '@gosen/request'
+import diff from '@gosen/diff'
 import { execute } from '@gosen/dom'
 
 class GosenCall extends HTMLElement {
   private _reqNum = 0
+  private _state = [] as Command[]
 
   constructor() {
     super()
@@ -31,7 +33,14 @@ class GosenCall extends HTMLElement {
     }
 
     this.classList.remove('gosen-loading')
-    await execute(this.ownerDocument, commands)
+    const diffed = diff(this._state, commands)
+
+    this._state = commands.map(c => 'tx' in c ? {
+      ...c,
+      tx: undefined,
+    } : c)
+
+    await execute(this.ownerDocument, diffed)
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
